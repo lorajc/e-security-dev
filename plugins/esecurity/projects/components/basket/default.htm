@@ -1,0 +1,58 @@
+{% if this.page.id == 'checkout' %}
+    <a class="nav-link" href="javascript:;">
+        <i class="fa fa-shopping-cart"
+           style="font-size: 1.3rem"></i>
+        <span class="hidden-sm-up">&nbsp;{{ 'Shopping cart'|_ }}</span>
+    </a>
+{% else %}
+    <a class="nav-link dropdown-toggle" href="javascript:;"
+       data-toggle="dropdown">
+        <i class="fa fa-shopping-cart"
+           style="font-size: 1.3rem"></i>
+        {% if count > 0 %}
+            <sup>
+                <span class="badge badge-danger "><strong>{{ count }}</strong></span>
+            </sup>
+        {% endif %}
+        <span class="d-none">&nbsp;{{ 'Shopping cart'|_ }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-triangle-t-r" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-content ">
+            {% if count > 0 %}
+                <div class="row my-2">
+                    <div class="col">
+                        <div class="px-3">
+                            {% partial __SELF__ ~ '::_items' %}
+                            <div class="row mt-5">
+                                <div class="col text-right">
+                                    <a class="btn btn-primary" href="{{ 'checkout'|page }}">
+                                        {{ 'Proceed to checkout'|_ }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            {% else %}
+                <div class="row m-4">
+                    <div class="col  text-center">
+                        <h4 class="h4-responsive">{{ 'Your shopping cart is empty'|_ }}</h4>
+                        {% if not user %}
+                            <p class="mt-4">
+                                {{ 'If you already have an account,'|_ }}&nbsp;
+                                <a href="{{ 'account/connection'|page }}">{{ 'Sign In'|_ }}</a>
+                                {{ 'to see your Cart.'|_ }}
+                            </p>
+                        {% endif %}
+                        {#{% partial  'security' %}#}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+
+
+
+

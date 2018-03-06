@@ -1,0 +1,83 @@
+title = "Residential"
+url = "/residential/:category"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/residentiel/:category"
+localeUrl[es] = "/residencial/:category"
+
+[Category]
+
+[simpleContact esecurityContact]
+nameTitle = "Full Name"
+emailTitle = "Email"
+phoneTitle = "Phone"
+subjectTitle = "Subject"
+messageTitle = "Message"
+buttonText = "Submit"
+displayPhone = 1
+==
+function onStart()
+{
+$this['group'] = "Residential";
+$this->Category->setGroup('1');
+}
+==
+<div class="category-page">
+    <section class="content-section-residential">
+
+        <div class="container">
+            <div class="row residential category-content">
+                <div class="col">
+                    <div class="row mt-md-5 justify-content-md-center ">
+                        <div class="col-12 col-md-10 col-lg-8 bg-success text-center py-3 triangle triangle-success">
+                            <h3 class="h3-responsive text-white">{{ 'Residential Solutions'|_ }}
+                                - {{ category.name }}</h3>
+                            <strong class="text-white">{{ 'We provide intelligent systems that are the best choice for your home'|_ }}
+                                .</strong>
+                        </div>
+                    </div>
+                    {% component 'Category' %}
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.container -->
+    </section>
+
+</div>
+<div>
+    <div class="category-clear-fix"></div>
+    <section class="content-section-marketing triangle triangle-gray">
+
+        <div class="container">
+            {% partial 'marketing' %}
+
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="contact">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 my-auto">
+
+                </div>
+                <div class="col-lg-6 my-auto">
+                    <h3 class="h3-responsive text-primary">{{ 'Contact us'|_ }}</h3>
+                    <p class="grey-text text-darken-2">
+                        {{ 'We would be please to give you free quote and come install your product to keep you in safety.'|_ }}
+                    </p>
+
+                    {% component 'esecurityContact' %}
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </section>
+</div>

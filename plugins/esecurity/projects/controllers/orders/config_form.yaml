@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Order
+
+# Model Form Field configuration
+form: $/esecurity/projects/models/order/fields.yaml
+
+# Model Class name
+modelClass: Esecurity\Projects\Models\Order
+
+# Default redirect location
+defaultRedirect: esecurity/projects/orders
+
+# Create page
+create:
+    title: Create Order
+    redirect: esecurity/projects/orders/update/:id
+    redirectClose: esecurity/projects/orders
+
+# Update page
+update:
+    title: Edit Order
+    redirect: esecurity/projects/orders
+    redirectClose: esecurity/projects/orders
+
+# Preview page
+preview:
+    title: Preview Order

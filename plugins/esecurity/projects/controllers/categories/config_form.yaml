@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/esecurity/projects/models/category/fields.yaml
+
+# Model Class name
+modelClass: Esecurity\Projects\Models\Category
+
+# Default redirect location
+defaultRedirect: esecurity/projects/categories
+
+# Create page
+create:
+    title: Create Category
+    redirect: esecurity/projects/categories/update/:id
+    redirectClose: esecurity/projects/categories
+
+# Update page
+update:
+    title: Edit Category
+    redirect: esecurity/projects/categories
+    redirectClose: esecurity/projects/categories
+
+# Preview page
+preview:
+    title: Preview Category

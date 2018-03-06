@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        span: left
+    slug:
+        label: Slug
+        span: right
+        preset:
+            field: name
+            type: slug
+    group:
+        label: Group
+        span: left
+        type: dropdown
+        emptyOption: -- Select --
+    published:
+        label: Published
+        type: switch
+        tab: Options

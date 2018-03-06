@@ -1,0 +1,51 @@
+<div class="table-responsive">
+    <table class="table table-hover table-sm " style="display: table;">
+        <thead class=" mx-auto">
+        <tr class="table-secondary">
+            <th style="min-width: 50px;">&nbsp;</th>
+            <th style="min-width: 60px;">{{ 'Category'|_ }}</th>
+            <th style="min-width: 300px;">{{ 'Product name'|_ }}</th>
+            <th class="text-right" style="min-width: 110px;">{{ 'Price'|_ }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in basketItems %}
+            {#{{ item|var_dump }}#}
+            <tr class="row-{{ item.rowid }}">
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm"
+                            data-request="{{ __SELF__ }}::onRemovePhoto"
+                            data-request-data="row_id: '{{ item.rowId }}'"
+                            data-request-update="'{{ __SELF__ }}::default': '.shop-cart'">
+                        <i class="fa fa-remove"></i>
+                    </button>
+                </td>
+                <td>
+                    <a href="{{ 'photo'|page({id: item.id, slug: item.slug}) }}"
+                       target="_blank">
+                        {{ item.id }}
+                    </a>
+                    <input type="hidden" name="photos[]" value="{{ item.id }}">
+                </td>
+                <td>
+                    <a href="{{ 'photo'|page({id: item.id, slug: item.slug}) }}"
+                       target="_blank">
+                        {{ item.name }}
+                    </a>
+                </td>
+                <td class="text-right">{{ item.price|money }}</td>
+            </tr>
+
+        {% endfor %}
+        <tr>
+            <td colspan="3" class="text-right">
+                {{ 'Subtotal'|_ }}&nbsp;({{ count }}&nbsp;
+                item{% if count > 1 %}s{% endif %}):
+            </td>
+            <td class="text-right"><span>{{ subtotal|money }}</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+

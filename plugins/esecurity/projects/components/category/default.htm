@@ -1,0 +1,38 @@
+<div class="row">
+    {% for product in category.products %}
+        {% if product.images|length %}
+            <div class="col-12 col-sm-6 col-md-3 px-md-0 group-item mb-4">
+                <div class="card rounded-0 z-depth-2">
+
+                    <a class="d-block" style="height: 280px;"
+                       href="{{ 'product'|page({category: product.category.slug, product: product.slug}) }}">
+                        <img class="card-img-top pt-2 mx-auto d-block" src="{{ product.images.0.path }}"
+                             alt="{{ this.page.title }}" title="{{ product.name|ucfirst }}">
+                    </a>
+
+                    <div class="card-body text-center">
+                        <a class="d-block text-dark"
+                           href="{{ 'product'|page({category: product.category.slug, product: product.slug}) }}">
+                            <h5 class="h5-responsive text-uppercase">{{ product.name|truncate(35) }}</h5>
+                            <h3 class="h3-responsive text-primary">
+                                {{ product.price|number_format(2, '.', ',') }}
+                            </h3>
+                            <p class="grey-text mb-0">
+                                {{ product.summary|truncate(120) }}
+                            </p>
+                        </a>
+                    </div>
+                    <div class="card-footer bg-success text-center">
+                        <a class="underline text-uppercase text-white"
+                           href="{{ 'product'|page({category: product.category.slug, product: product.slug}) }}">
+                            {{ 'Learn more'|_ }}
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        {% endif %}
+    {% endfor %}
+
+</div>

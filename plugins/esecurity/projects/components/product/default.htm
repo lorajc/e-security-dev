@@ -1,0 +1,29 @@
+<h1 class="h1-responsive">
+    {{ product.name|ucfirst }}
+</h1>
+<div class="row mt-4">
+    <div class="col-12 col-sm">
+        <img src="{{ product.images.0.path }}" class="img-fluid">
+        {% partial __SELF__ ~'::_gallery'  %}
+    </div>
+    <div class="col-12 col-sm">
+        <p>{{ product.summary }}</p>
+        <div>{{ product.description|raw }}</div>
+        <p class="text-right">
+            <button class="btn btn-primary mr-3" type="button"
+                    data-toggle="collapse"
+                    data-target="#collapse-order" >
+                {{ 'Order this product'|_ }}
+            </button>
+            <a class="btn btn-danger"  target="_blank"
+               href="{{ 'checkout'|page({product: product.id}) }}">
+                {{ 'Buy and Pay'|_ }}
+            </a>
+        </p>
+    </div>
+</div>
+<div class="mt-4 collapse" id="collapse-order">
+    <div class="col">
+        {% partial __SELF__ ~'::_order'  %}
+    </div>
+</div>

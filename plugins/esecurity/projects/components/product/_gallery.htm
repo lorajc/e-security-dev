@@ -1,0 +1,19 @@
+<!-- Gallery Row -->
+<div class="row mt-3">
+    <div class="col">
+        <ul id="light-gallery" class="">
+            {% if product.images|length > 1 %}
+                {% for image in product.images %}
+                    <li data-src="{{ image.path }}"
+                        data-title=""
+                        data-desc="">
+                        <a href="#">
+                            <img src="{{ image.thumb(80, {mode: 'crop'}) }}"
+                                 alt=""/>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+</div>

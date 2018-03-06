@@ -1,0 +1,44 @@
+{% if not form_paypal %}
+    {% if count == 0 %}
+        <h1 class="h1-responsive">{{ 'Review your order'|_ }}</h1>
+        {{ form_open({"id":"form-checkout" }) }}
+        <div class="row mt-4">
+            <div class="col">
+                {% partial __SELF__ ~ '::_items' %}
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 col-lg-7">
+                {% partial __SELF__ ~ '::_information' %}
+            </div>
+            <div class="col-12 col-lg-5">
+                {% partial __SELF__ ~ '::_summary' %}
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-lg-7">
+                <span class="field-required"> </span>&nbsp; {{ 'Required fields'|_ }}
+            </div>
+            <div class="col-12 col-lg-5 text-right">
+                <button type="submit"
+                        class="btn btn-primary btn-lg"
+                        name="btn_checkout"
+                        value="checkout_OK">
+                    {{ 'Pay now'|_ }}
+                </button>
+            </div>
+        </div>
+        {{ form_close() }}
+
+    {% else %}
+        <div class="row m-4">
+            <div class="col text-center">
+                <h3 class="h3-responsive">{{ 'Your shopping cart is empty'|_ }}</h3>
+
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+    {% partial __SELF__ ~ '::_form_paypal' %}
+{% endif %}

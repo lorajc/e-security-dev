@@ -1,0 +1,167 @@
+<table width="640" cellspacing="0" cellpadding="0" border="0" align="center"
+       style="font-family: Helvetica, sans-serif;">
+    <tr>
+        <td style="background-color: #f5f5f5;padding: 20px;border-top: 4px solid #111820;">
+            <!-- Email Header -->
+            <table cellspacing="0" cellpadding="0" style="border-collapse: collapse;display: table;width: 100%">
+                <tr>
+                    <td>
+                        <img src="{{ logo }}" width="300">
+                    </td>
+                    <td style="text-align: right;font-family: Helvetica, sans-serif;">
+                        <span style="font-size: 14px;">
+                            {{ order.completion_date|mydatelong }}
+                        </span><br>
+                        <span style="font-family: Helvetica, sans-serif;">
+                            {{ 'Order ID' }}&nbsp;:&nbsp;<strong>{{ order.id }}</strong>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px;font-family: Helvetica, sans-serif;font-size: 14px;border-bottom: 1px solid #dcdcdc;">
+            {{ 'Congratulations! Your purchase was completed successfully'|_ }}!
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px;font-family: Helvetica, sans-serif;font-size: 14px;border-bottom: 1px solid #dcdcdc;">
+            <table cellspacing="0" cellpadding="0" style="border-collapse: collapse;display: table;width: 100%">
+                <tr>
+                    <td style="font-family: Helvetica, sans-serif;font-size: 12px;vertical-align: top;">
+                        <span style="font-family: Helvetica, sans-serif;font-size: 18px;">
+                            <strong>{{ 'Billing details'|_ }}</strong>
+                        </span><br>
+                        <span>{{ order.card_holder_name }}</span><br>
+                        <span>{{ order.email }}</span><br>
+                        <span>{{ order.phone|phone }}</span><br>
+                        {{ order.billing_address }},
+                        {{ order.city.nom_en ~ ' ' ~ order.state.code_province }},
+                        {{ order.zip }}
+                    </td>
+                    <td style="font-family: Helvetica, sans-serif;font-size: 12px;text-align: right;vertical-align: top;">
+                        <span style="font-family: Helvetica, sans-serif;font-size: 18px;">
+                            <strong>Logimonde Media</strong>
+                        </span><br>
+                        <span>782 rue Principale</span><br>
+                        <span>Laval, Quebec H7X 1E6</span><br>
+                        <span>{{ '4506895060'|phone }}</span><br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px;font-family: Helvetica, sans-serif;font-size: 14px;">
+            <table cellspacing="0" cellpadding="0" style="border-collapse: collapse;display: table;width: 100%">
+                <thead>
+                <tr>
+                    <th style="min-width: 60px;font-family: Helvetica, sans-serif;font-size: 14px;text-align: left;padding: 10px 0;background-color: #f5f5f5;">
+                        {{ '# ID'|_ }}
+                    </th>
+                    <th style="min-width: 300px;font-family: Helvetica, sans-serif;font-size: 14px;text-align: left;padding: 10px 0;background-color: #f5f5f5;">
+                        {{ 'Photo title'|_ }}
+                    </th>
+                    <th style="min-width: 110px;font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding: 10px 0;background-color: #f5f5f5;">
+                        {{ 'Price'|_ }}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in order.items %}
+                    {#{{ item|var_dump }}#}
+                    <tr class="row-{{ item.photo.id }}">
+                        <td style="font-family: Helvetica, sans-serif;font-size: 14px;padding: 10px 0;border-bottom: 1px solid #dcdcdc;">
+                            {{ item.photo.id }}
+                        </td>
+                        <td style="font-family: Helvetica, sans-serif;font-size: 14px;padding: 10px 0;border-bottom: 1px solid #dcdcdc;">
+                            <a href="{{ urlPhoto }}{{ item.photo.id }}/{{ item.photo.slug }}"
+                               target="_blank">
+                                {{ item.photo.title }}
+                            </a>
+                        </td>
+                        <td style="font-family: Helvetica, sans-serif;font-size: 14px;padding: 10px 0;text-align: right;border-bottom: 1px solid #dcdcdc;">
+                            {{ item.price|money }}
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                <tr>
+                    <td colspan="2" style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;padding-right: 20px;">
+                        {{ 'Subtotal'|_ }}&nbsp;({{ order.items|length }}&nbsp;
+                        item{% if order.items|length > 1 %}s{% endif %}):
+                    </td>
+                    <td style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;">
+                        <span>{{ order.subtotal|money }}</span>
+                    </td>
+                </tr>
+                {% if order.discount > 0 %}
+                    <tr>
+                        <td colspan="2"
+                            style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;padding-right: 20px;">
+                            {{ 'Discount'|_ }}
+                        </td>
+                        <td style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;color: red;">
+                            <span>-{{ order.discount|money }}</span>
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2" style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;padding-right: 20px;">
+                        {{ 'GST'|_ }} - 5 %:
+                    </td>
+                    <td style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;">
+                        <span>{{ order.tax1_total|money }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 9px;padding-right: 20px;">
+                        {{ 'QST'|_ }} - 9.975 %:
+                    </td>
+                    <td style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 9px;">
+                        <span>{{ order.tax2_total|money }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;padding-top: 12px;padding-right: 20px;">
+                        <strong>{{ 'Total'|_ }}:</strong>
+                    </td>
+                    <td style="font-family: Helvetica, sans-serif;font-size: 14px;text-align: right;border-bottom: 2px solid #aaaaaa;padding-top: 12px;">
+                        <strong>{{ order.grand_total|money }}</strong>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px;font-family: Helvetica, sans-serif;font-size: 12px;background-color: #f7f7f7;">
+            {{ 'Please, follow this'|_ }}
+            <a href="{{ urlOrder }}{{ order.token }}">{{ 'link'|_ }}</a>
+            {{ 'for more information about your order'|_ }}<br><br>
+            {{ 'Please do not reply to this email. We are unable to respond to inquiries sent to this address.'|_ }}
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #40464c;padding: 20px;font-family: Helvetica, sans-serif;font-size: 12px;color: #ffffff;">
+            {{ 'For any questions, do not hesitate to'|_ }}
+            <a href="{{ server }}contact"
+               target="_blank"
+               style="color: #ffffff;text-decoration: underline;">contact us</a><br><br>
+            {{ 'All transactions on PAXStockPhoto are safe and secure'|_ }}.
+            {{ 'Any personal information you give us will be handled in the strictest confidence according to our'|_ }}
+            <a href="{{ 'https://logimondemedia.com/privacy-policy' }}"
+               target="_blank"
+               style="color: #ffffff;text-decoration: underline;">
+                {{ 'privacy policy'|_ }}
+            </a>.
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #111820;padding: 10px 20px;font-family: Helvetica, sans-serif;font-size: 10px;color: #ffffff;text-align: right;">
+            All rights reserved &copy; Logimonde Media {{ "now"|date('Y') }}
+        </td>
+    </tr>
+</table>

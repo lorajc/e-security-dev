@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Product
+
+# Model Form Field configuration
+form: $/esecurity/projects/models/product/fields.yaml
+
+# Model Class name
+modelClass: Esecurity\Projects\Models\Product
+
+# Default redirect location
+defaultRedirect: esecurity/projects/products
+
+# Create page
+create:
+    title: Create Product
+    redirect: esecurity/projects/products/update/:id
+    redirectClose: esecurity/projects/products
+
+# Update page
+update:
+    title: Edit Product
+    redirect: esecurity/projects/products
+    redirectClose: esecurity/projects/products
+
+# Preview page
+preview:
+    title: Preview Product

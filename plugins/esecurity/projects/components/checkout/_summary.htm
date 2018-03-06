@@ -1,0 +1,60 @@
+<div class="card mt-4 mt-lg-0">
+    <div class="card-header">
+        {{ 'Order summary'|_ }}
+    </div>
+    <div class="card-body">
+        <div class="row my-2">
+            <div class="col-7">{{ 'Subtotal'|_ }}:</div>
+            <div class="col-5 text-right">{{ subtotal|money }}</div>
+        </div>
+        {% if discount > 0 %}
+            <div class="row my-2">
+                <div class="col-7">
+                    {{ 'Discount'|_ }}
+                    <strong>{% if discountRate > 0 %}&nbsp;{{ discountRate }}%{% endif %}</strong>
+                    :
+                </div>
+                <div class="col-5 text-right red-text">-{{ discount|money }}</div>
+            </div>
+        {% endif %}
+        <div class="row my-2" style="border-top: 1px solid #dcdcdc;">
+            <div class="col-7">{{ 'GST'|_ }} - 5 %</div>
+            <div class="col-5 text-right">{{ gst|money }}</div>
+        </div>
+        <div class="row my-2" style="border-bottom: 1px solid #dcdcdc;">
+            <div class="col-7">{{ 'QST'|_ }} - 9.975 %</div>
+            <div class="col-5 text-right">{{ qst|money }}</div>
+        </div>
+        <div class="row my-2">
+            <div class="col-7"><strong>{{ 'Total'|_ }}</strong></div>
+            <div class="col-5 text-right"><strong>{{ total|money }}</strong></div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    <strong><i class="fa fa-info-circle"></i>&nbsp;{{ 'Attention' }}!</strong>&nbsp;
+                    {{ 'Please make sure you press the "Return to Merchant" button once you have entered your payment information in order to confirm your purchase.'|_ }}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col">
+                {% partial __SELF__ ~ '::_paypal' %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {#{% partial  'security' %}#}
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="discount" value="{{ discount }}">
+<input type="hidden" name="subtotal" value="{{ subtotal }}">
+<input type="hidden" name="tax1_total" value="{{ gst }}">
+<input type="hidden" name="tax2_total" value="{{ qst }}">
+<input type="hidden" name="grand_total" value="{{ total }}">
+<input type="hidden" name="tax" value="{{ (gst + qst)|number_format(2,'.') }}">
+<input type="hidden" name="amount" value="{{ subtotal - discount }}">
+<input type="hidden" name="quantity" value="1">

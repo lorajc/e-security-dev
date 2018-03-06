@@ -1,0 +1,23 @@
+#light-gallery {
+    list-style: none outside none;
+    padding-left: 0;
+}
+
+#light-gallery li {
+    display: block;
+    float: left;
+    height: 65px;
+    margin-bottom: 12px;
+    margin-right: 12px;
+    width: 80px;
+}
+
+#light-gallery li a {
+    height: 65px;
+    max-width: 80px;
+}
+
+#light-gallery li a img {
+    height: 65px;
+    max-width: 80px;
+}

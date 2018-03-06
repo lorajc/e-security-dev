@@ -1,0 +1,64 @@
+description = "Default Layout"
+
+[localePicker]
+forceUrl = 0
+
+[session]
+security = "all"
+
+[Basket]
+==
+use RainLab\Translate\Classes\Translator;
+function onInit()
+{
+    $translator = Translator::instance();
+    $lang = $translator->getLocale();
+    $this['lang'] = $translator->getLocale();
+    $this['site_url'] = asset('');
+}
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>E-security.ca - {{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.description }}">
+    <meta name="title" content="{{ this.page.title }}">
+    <meta name="author" content="JuanCarlosLora">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="{{ 'assets/images/favicon.png'|theme }}"/>
+    <link href="{{ 'assets/images/apple-touch-icon.png'|theme }}" rel="apple-touch-icon">
+    <link href="{{ 'assets/images/apple-touch-icon-precomposed.png'|theme }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ [
+    'assets/css/theme.css',
+    'assets/vendor/animate.css/animate.min.css',
+    ]|theme }}" rel="stylesheet">
+    {% styles %}
+</head>
+<body>
+<header>
+{% partial 'navigation' %}
+</header>
+
+<main id="page">
+    {% page %}
+</main>
+
+<footer class="bg-primary">
+    {% partial 'footer' %}
+</footer>
+
+{% flash %}
+<span id="flash" data-type="{{ type }}" data-message="{{ message }}"></span>
+{% endflash %}
+
+<script src="{{ [
+'assets/vendor/jquery/jquery-3.2.1.min.js',
+'assets/vendor/popper/popper.js',
+'assets/vendor/tether/dist/js/tether.min.js',
+'assets/vendor/bootstrap/dist/js/bootstrap.min.js',
+]|theme }}"></script>
+
+{% framework extras %}
+{% scripts %}
+</body>

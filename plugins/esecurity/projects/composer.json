@@ -1,0 +1,6 @@
+{
+  "name": "e-security/projects",
+  "require": {
+    "gloudemans/shoppingcart": "^2.4"
+  }
+}

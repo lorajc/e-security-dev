@@ -1,0 +1,27 @@
+title = "Product"
+url = "/product/:category/item/:product"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/product"
+localeUrl[es] = "/product"
+
+[Product]
+
+[Category]
+==
+<div class="container">
+    <div class="row mt-3 mb-5">
+        <div class="col">
+            {% component 'Product' %}
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col">
+            {% component 'Category' %}
+        </div>
+    </div>
+
+</div>

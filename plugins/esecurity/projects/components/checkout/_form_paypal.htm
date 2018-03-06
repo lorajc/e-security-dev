@@ -1,0 +1,25 @@
+<h3 class="h3-responsive">{{ 'Please wait while you are redirected to paypal'|_ }}...</h3>
+<div class="row mt-5">
+    <div class="col">
+        <div class="alert alert-warning" role="alert">
+            <strong><i class="fa fa-info-circle"></i>&nbsp;{{ 'Attention' }}!</strong>&nbsp;
+            {{ 'Please make sure you press the "Return to Merchant" button once you have entered your payment information in order to confirm your purchase.'|_ }}
+        </div>
+    </div>
+</div>
+{{ form_open({"id":"form-payment-paypal", 'url': post_url, "target": "_top" }) }}
+{#{{ var_dump(params) }}#}
+{% for key, param in params %}
+    {% if key != 'photos' %}
+        <input type="hidden" name="{{ key }}" value="{{ param }}">
+    {% endif %}
+{% endfor %}
+{{ form_close() }}
+<script type="text/javascript">
+    //Our form submission function.
+    function submitForm() {
+        document.getElementById('form-payment-paypal').submit();
+    }
+    //Call the function submitForm() as soon as the page has loaded.
+    window.onload = submitForm;
+</script>

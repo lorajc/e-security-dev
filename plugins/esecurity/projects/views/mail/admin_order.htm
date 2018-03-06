@@ -1,0 +1,18 @@
+subject = "E-security - Confirmacion de pedido"
+==
+
+<p>Buenos dias,</p>
+
+<p>
+    <strong>{{ order.costumer_name }}</strong>, ha solicitado el producto:
+</p>
+<h4>{{ order.product.name }}</h4>
+
+<p>
+    Para contactar al solicitante:<br>
+    correo electronico: <strong>{{ order.costumer_email }}</strong><br>
+    Telefono: <strong>{{ order.costumer_phone }}</strong><br>
+    Direccion: <strong>{{ order.costumer_address }}, {{ order.costumer_zip }}</strong><br>
+</p>
+
+<p>E-security team</p>

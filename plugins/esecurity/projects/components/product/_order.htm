@@ -1,0 +1,51 @@
+{{ form_open({"id":"form-order" }) }}
+<div class="card">
+    <div class="card-header">
+        {{ 'Informations'|_ }}
+    </div>
+    <input type="hidden" name="product_id" value="{{ product.id }}">
+    <div class="card-body">
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'E-mail'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="email" >
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'Name'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="name" >
+            </div>
+        </div>
+
+        <div class="form-row ">
+            <div class="col-sm-8 form-group">
+                <label>{{ 'Address'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="address">
+            </div>
+
+            <div class="col-sm-4 form-group">
+                <label>{{ 'Postal code'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="zip" >
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="col-sm-4 form-group">
+                <label>{{ 'Phone'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="phone" >
+            </div>
+        </div>
+        <p class="text-right">
+            <button class="btn btn-primary" type="button"
+            onclick="setOrder(this)">
+            {{ 'Submit'|_ }}
+            </button>
+        </p>
+    </div>
+</div>
+{{ form_close() }}

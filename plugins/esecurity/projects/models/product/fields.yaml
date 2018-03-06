@@ -1,0 +1,65 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        span: left
+    slug:
+        label: Slug
+        span: right
+        preset:
+            field: name
+            type: slug
+
+tabs:
+    fields:
+        summary:
+            label: Sumamry
+            tab: Description
+        description:
+            label: Description
+            type: richeditor
+            tab: Description
+
+        category:
+            label: Category
+            span: right
+            type: dropdown
+            tab: Options
+            emptyOption: -- Select --
+        group:
+            label: Group
+            span: left
+            type: dropdown
+            tab: Options
+            emptyOption: -- Select --
+        cost:
+            label: Cost
+            tab: Options
+            type: number
+            span: left
+        price:
+            label: Price
+            tab: Options
+            type: number
+            span: right
+        items:
+            label: Items
+            tab: Options
+            type: number
+            span: left
+
+        published:
+            label: Published
+            type: switch
+            tab: Options
+
+        images:
+            label: Images
+            type: fileupload
+            mode: image
+            tab: Photos
+            imageHeight: 150
+            imageWidth: 150

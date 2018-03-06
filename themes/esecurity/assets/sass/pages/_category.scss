@@ -1,0 +1,8 @@
+.category-page {
+  .group-item .card-body {
+    min-height: 260px;
+    @include media-breakpoint-down(md) {
+      min-height: 210px;
+    }
+  }
+}

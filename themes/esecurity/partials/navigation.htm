@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ 'home'|page }}">
+            <img src="{{ 'assets/images/e-security-inverse.png'|theme }}">
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mr-auto ml-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">{{ 'Residential'|_ }}</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-triangle-t-r">
+                        <a class="dropdown-item"
+                           href="{{ 'residential'|page({category: 'smart-home'}) }}">
+                            {{ 'Smart home'|_ }}</a>
+                        <a class="dropdown-item"
+                           href="{{ 'residential'|page({category: 'home-security-alarm'}) }}">
+                            {{ 'Home security camera'|_ }}</a>
+                        <a class="dropdown-item"
+                           href="{{ 'residential'|page({category: 'camera-video'}) }}">
+                            {{ 'Home security alarm'|_ }}</a>
+                        <a class="dropdown-item"
+                           href="{{ 'residential'|page({category: 'critical-systems'}) }}">
+                            {{ 'Critical home systems'|_ }}</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">{{ 'Business'|_ }}</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-triangle-t-r">
+                        <a class="dropdown-item"
+                           href="{{ 'business'|page({category: 'acces-control'}) }}">
+                            {{ 'Acces control'|_ }}</a>
+                        <a class="dropdown-item"
+                           href="{{ 'business'|page({category: 'video-security-system'}) }}">
+                            {{ 'Video security system'|_ }}</a>
+                        <a class="dropdown-item"
+                           href="{{ 'business'|page({category: 'burglar-alarm-system'}) }}">
+                            {{ 'Burglar alarm system'|_ }}</a>
+                        <a class="dropdown-item"
+                           href="{{ 'business'|page({category: 'business-automation'}) }}">
+                            {{ 'Business automation'|_ }}</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'Contact'|_ }}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com"
+                       id="navbarDropdownMenuLink"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ 'Your account'|_ }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-triangle-t-r" aria-labelledby="navbarDropdownMenuLink">
+                        {% if user %}
+                            <a href="{{ 'account/profile'|page }}"
+                               class="dropdown-item">
+                                {{ user.name }}&nbsp;
+                                {{ 'Profile'|_ }}
+                            </a>
+                            <a class="dropdown-item"
+                               data-request="onLogout" data-request-data="redirect: '/'">
+                                {{ 'Logout'|_ }}</a>
+                        {% else %}
+                            <a href="{{ 'account/connection'|page }}"
+                               class="dropdown-item">{{ 'Login'|_ }}</a>
+                            <a href="{{ 'account/register'|page }}"
+                               class="dropdown-item">{{ 'Register'|_ }}</a>
+                        {% endif %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    {% if lang == 'en' %}
+                        <a href="#"
+                           class="nav-link "
+                           data-request="onSwitchLocale"
+                           data-request-data="locale: 'fr'" title="Français">
+                            FR
+                        </a>
+                    {% else %}
+                        <a href="#"
+                           class="nav-link"
+                           data-request="onSwitchLocale"
+                           data-request-data="locale: 'en'" title="English">
+                            EN
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="tel:5145553322">
+                        <i class="fa fa-phone"></i>&nbsp;514-555-3322
+                    </a>
+                </li>
+                <li class="nav-item shop-cart dropdown mega-dropdown">
+                    {% component 'Basket' %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

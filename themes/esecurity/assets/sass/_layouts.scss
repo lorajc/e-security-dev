@@ -1,0 +1,104 @@
+/*
+ General CSS tricks
+*/
+ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold!important;
+}
+
+.move-cursor {
+  cursor: move;
+}
+
+.underline:hover {
+  text-decoration: underline!important;
+}
+
+.default-link-color {
+  color: #1A0DAB !important;
+}
+
+.disabled {
+  pointer-events: none!important;
+  cursor: default;
+}
+
+.bg-highlight {
+  background-color: $highlight;
+}
+
+.highlight {
+  color: $highlight;
+}
+
+.small-block {
+  display: inline-block!important;
+  line-height: 16px;
+}
+
+.x-small-block {
+  display: inline-block!important;
+  line-height: 14px;
+  font-size: 0.7rem;
+}
+
+.fa-15x {
+  font-size: 1.5rem;
+}
+
+a {
+  outline: 0;
+  text-decoration: none!important;
+}
+
+@include media-breakpoint-up(md) {
+  .navbar-brand img {
+    width: 210px;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .navbar-brand img {
+    width: 170px;
+  }
+}
+
+#page {
+  padding-top: 80px;
+  @include media-breakpoint-down(xs) {
+    padding-top: 60px;
+  }
+  .clearfix {
+    height: 300px;
+    @include media-breakpoint-down(md) {
+      height: 150px;
+    }
+    @include media-breakpoint-down(xs) {
+      height: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  header .shop-cart {
+    .dropdown-content {
+      min-width: 480px;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  header .shop-cart {
+    .dropdown-content {
+      width: 100%;
+    }
+  }
+}

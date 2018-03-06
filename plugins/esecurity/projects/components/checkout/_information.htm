@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="card-header">
+        {{ 'Biling Information'|_ }}
+    </div>
+    <div class="card-body">
+        <div class="form-row mt-3">
+            <div class="col col-sm form-group">
+                <label>{{ 'First name'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="first_name" value="{{ user.name }}">
+            </div>
+            <div class="col col-sm form-group">
+                <label>{{ 'Last name'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="last_name" value="{{ user.email }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col form-group">
+                <label>{{ 'Email'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="email" value="{{ user.email }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col form-group">
+                <label>{{ 'Address'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="street_addr" value="{{ user.street_addr }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label>{{ 'Phone'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="phone" value="{{ user.phone }}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-9 form-group">
+                <label>{{ 'City (Type city name & choose from list)'|_ }}</label>
+                <input type="text" class="form-control get-city"
+                       name="name_city"
+                       value="{{ user.city ? user.city.nom_en ~ ' (' ~ user.state.nom_en ~ ' - ' ~ user.country.nom_en ~ ')' : '' }}">
+
+                <input type="hidden" name="city_id" value="{{ user.city_id }}">
+                <input type="hidden" name="state_id" value="{{ user.state_id }}">
+                <input type="hidden" name="country_id" value="{{ user.country_id }}">
+            </div>
+            <div class="col-md-3 form-group">
+                <label>{{ 'Postal code'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="zip" value="{{ user.zip }}">
+            </div>
+        </div>
+    </div>
+</div>

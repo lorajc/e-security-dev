@@ -1,0 +1,6 @@
+1.0.1: First version of Projects
+1.0.2:
+    - Create database structure
+    - create_products_table.php
+    - create_categories_table.php
+    - create_orders_table.php

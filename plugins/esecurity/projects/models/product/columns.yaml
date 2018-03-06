@@ -1,0 +1,19 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Name
+        searchable: true
+    group_name:
+        label: Group
+
+    category:
+        label: Category
+        relation: category
+        select: name
+        searchable: true
+    price:
+        label: Price
+        searchable: true

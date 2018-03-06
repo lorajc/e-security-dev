@@ -1,0 +1,50 @@
+<h1 class="h1-responsive">{{ 'Thank you for your order'|_ }}!</h1>
+
+<div class="row mt-4">
+    <div class="col">
+        <p>
+            {{ 'Your transaction has been completed, your order reference is'|_ }}:&nbsp;
+            {{ order.id }}
+        </p>
+        <p>
+             {{ 'You should receive an e-mail within a few minutes with your confirmation'|_ }}
+        </p>
+        <p>
+           {{ 'If you wish, you can print out the full details of your order by'|_ }}
+            <a href="{{ 'print-confirmation'|page({token: order.token}) }}" target="_blank">{{ 'clicking here'|_ }}</a>
+        </p>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12 col-lg-7">
+        {% partial __SELF__ ~ '::_items' %}
+    </div>
+    <div class="col-12 col-lg-5">
+        {% partial __SELF__ ~ '::_summary' %}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <a class="btn btn-success btn-lg" target="_blank"
+           href="/download/photos/{{ order.token }}">
+            {{ 'Download'|_ }}
+        </a>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        <h3 class="h3-responsive">{{ 'Billing details'|_ }}</h3>
+        <div>{{ 'Name'|_ }}&nbsp;:&nbsp;<strong>{{ order.card_holder_name }}</strong></div>
+        <div>{{ 'Email'|_ }}&nbsp;:&nbsp;<strong>{{ order.email }}</strong></div>
+        <div>{{ 'Company'|_ }}&nbsp;:&nbsp;<strong>{{ order.company }}</strong></div>
+        <div>
+            {{ 'Address'|_ }}&nbsp;:&nbsp;
+            <strong>
+                {{ order.billing_address }},
+                {{ order.city.nom_en ~ ' (' ~ order.state.nom_en ~ ' - ' ~ order.country.nom_en ~ ')' }},
+                {{ order.zip }}
+            </strong>
+        </div>
+        <div>{{ 'Phone'|_ }}&nbsp;:&nbsp;<strong>{{ order.phone|phone }}</strong></div>
+    </div>
+</div>
