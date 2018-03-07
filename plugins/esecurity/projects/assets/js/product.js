@@ -6,6 +6,9 @@ $(document).ready(function () {
         hideControlOnEnd: false,
 
     });
+
+    var productHeight = $('.product-content').height();
+    $('.product-clear-fix').height(productHeight - 200);
 });
 
 
@@ -19,3 +22,18 @@ function setOrder(element) {
     });
 
 }
+
+$('#btn-add-cart').on('click', function () {
+    var $self = $(this);
+    var id = $self.data('product-id');
+    $.request('Basket::onAddCart', {
+        data: {id: id},
+        update: {'Basket::default': '.shop-cart'},
+        beforeUpdate: function (data) {
+            //toastr.info(data.message, null, opts);
+            $self.prop('disabled', true);
+            $('#one-click-link').remove();
+        }
+
+    })
+});

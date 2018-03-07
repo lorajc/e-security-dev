@@ -4,6 +4,7 @@ use Cms\Classes\ComponentBase;
 use Auth;
 use ApplicationException;
 use RainLab\Translate\Classes\Translator as languageTranslator;
+use Esecurity\Projects\Classes\PaypalPayments;
 
 class Checkout extends ComponentBase
 {
@@ -40,9 +41,6 @@ class Checkout extends ComponentBase
 
     public function loadBasketInfo()
     {
-        if ($idPhoto = $this->param('photo')) {
-            $this->addOneClickToBasket($idPhoto);
-        }
 
         $this->addJs('assets/js/ccv.js');
         $this->addJs('assets/js/checkout.js');
@@ -59,14 +57,6 @@ class Checkout extends ComponentBase
         $this->page['years'] = $this->setYears();
     }
 
-    private function addOneClickToBasket($id)
-    {
-        $photo = Photo::whereId($id)->first();
-        if ($photo) {
-            $item = Cart::add($id, $photo->title, 1, Settings::get('price'));
-            Cart::associate($item->rowId, 'Logimonde\Stock\Models\Photo');
-        }
-    }
 
     protected function setYears()
     {

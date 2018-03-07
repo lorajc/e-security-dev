@@ -1,0 +1,18 @@
+title = "Register"
+url = "/account/register"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/register"
+
+[UserRegister]
+redirect = "home"
+==
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% component 'UserRegister' %}
+        </div>
+    </div>
+</div>

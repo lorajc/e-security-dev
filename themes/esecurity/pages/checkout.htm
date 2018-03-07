@@ -1,18 +1,17 @@
 title = "Checkout"
-url = "/checkout/:product"
+url = "/checkout/:product?"
 layout = "default"
 is_hidden = 0
 
 [viewBag]
-localeUrl[fr] = "/checkout"
-localeUrl[es] = "/checkout"
+localeUrl[fr] = "/checkout/:product?"
+localeUrl[es] = "/checkout/:product?"
 
 [Checkout]
 ==
 <div class="container">
-    <div class="row mt-5">
+    <div class="row my-5">
         <div class="col">
-
             {% component 'Checkout' %}
         </div>
     </div>

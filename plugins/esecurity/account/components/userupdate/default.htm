@@ -1,0 +1,31 @@
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active"
+           data-toggle="tab" href="#info" role="tab">{{ 'Informations'|_ }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           data-toggle="tab" href="#address" role="tab">{{ 'Password'|_ }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           data-toggle="tab" href="#orders" role="tab">{{ 'Your orders'|_ }}</a>
+    </li>
+</ul>
+
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="info" role="tabpanel" style="min-height: 350px;">
+        {% partial __SELF__ ~ '::_informations' %}
+    </div>
+    <div class="tab-pane" id="address" role="tabpanel" style="min-height: 350px;">
+        {% partial __SELF__ ~ '::_password' %}
+    </div>
+    <div class="tab-pane" id="orders" role="tabpanel" style="min-height: 350px;">
+        {% partial __SELF__ ~ '::_orders' %}
+    </div>
+</div>
+
+

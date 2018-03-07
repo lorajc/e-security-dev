@@ -1,6 +1,7 @@
 {
   "name": "e-security/projects",
   "require": {
-    "gloudemans/shoppingcart": "^2.4"
+    "gloudemans/shoppingcart": "^2.4",
+    "angelleye/paypal-php-library": "2.0.*"
   }
 }

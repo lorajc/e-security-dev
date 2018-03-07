@@ -1,24 +1,25 @@
-<h1 class="h1-responsive">
-    {{ product.name|ucfirst }}
-</h1>
-<div class="row mt-4">
-    <div class="col-12 col-sm">
+
+<div class="row ">
+    <div class="col-12 col-sm bg-white pt-4">
         <img src="{{ product.images.0.path }}" class="img-fluid">
         {% partial __SELF__ ~'::_gallery'  %}
     </div>
-    <div class="col-12 col-sm">
-        <p>{{ product.summary }}</p>
+    <div class="col-12 col-sm bg-white product-details">
+        <h3 class="h3-responsive mt-5">
+            {{ 'Price'|_ }}: <span class="text-primary">{{ product.price|money }}</span>
+        </h3>
+        <hr>
+        <p class="mt-3">{{ product.summary }}</p>
         <div>{{ product.description|raw }}</div>
         <p class="text-right">
-            <button class="btn btn-primary mr-3" type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse-order" >
-                {{ 'Order this product'|_ }}
+            <button class="btn btn-success btn-lg pointer"
+                    type="button"
+                    data-product-id="{{ product.id }}"
+                    {% if inCart %}disabled{% endif %}
+                    id="btn-add-cart">
+                {{ 'Add to cart'|_ }}
             </button>
-            <a class="btn btn-danger"  target="_blank"
-               href="{{ 'checkout'|page({product: product.id}) }}">
-                {{ 'Buy and Pay'|_ }}
-            </a>
+
         </p>
     </div>
 </div>

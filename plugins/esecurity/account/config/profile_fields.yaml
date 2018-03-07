@@ -1,0 +1,63 @@
+# ===================================
+#  Extended Profile Field Definitions
+# ===================================
+
+phone:
+    label: esecurity.account::lang.user.phone
+    tab: esecurity.account::lang.tab.profile
+    span: left
+
+mobile:
+    label: esecurity.account::lang.user.mobile
+    tab: esecurity.account::lang.tab.profile
+    span: right
+
+title:
+    label: Title
+    tab: esecurity.account::lang.tab.profile
+    span: left
+
+company:
+    label: esecurity.account::lang.user.company
+    tab: esecurity.account::lang.tab.profile
+    span: right
+
+street_addr:
+    label: esecurity.account::lang.user.street_addr
+    tab: esecurity.account::lang.tab.profile
+    span: left
+
+zip:
+    label: esecurity.account::lang.user.zip
+    tab: esecurity.account::lang.tab.profile
+    span: right
+
+country:
+    label: Country
+    placeholder: Select a country
+    type: dropdown
+    tab: esecurity.account::lang.tab.profile
+    span: left
+
+state:
+    label: Province
+    placeholder: Select a province
+    type: dropdown
+    tab: esecurity.account::lang.tab.profile
+    span: right
+    dependsOn: country
+
+city:
+    label: City
+    placeholder: Select a city
+    type: dropdown
+    tab: esecurity.account::lang.tab.profile
+    span: left
+    dependsOn: state
+
+language:
+    label: Language
+    placeholder: Select a language
+    type: dropdown
+    tab: esecurity.account::lang.tab.profile
+    span: right

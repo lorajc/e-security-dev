@@ -10,13 +10,40 @@ localeUrl[es] = "/product"
 [Product]
 
 [Category]
+
+[simpleContact esecurityContact]
+nameTitle = "Full Name"
+emailTitle = "Email"
+phoneTitle = "Phone"
+subjectTitle = "Subject"
+messageTitle = "Message"
+buttonText = "Submit"
+displayPhone = 1
 ==
-<div class="container">
-    <div class="row mt-3 mb-5">
-        <div class="col">
-            {% component 'Product' %}
+<div class="product-page">
+    <section class="content-section-residential">
+
+        <div class="container">
+            <div class="row product-content">
+                <div class="col">
+                    <div class="row mt-md-5 justify-content-md-center ">
+                        <div class="col-12 col-md-10 col-lg-8 bg-success text-center py-3 triangle triangle-success">
+                            <h1 class="h3-responsive text-white">
+                                {{ product.name|ucfirst }}
+                            </h1>
+
+                        </div>
+                    </div>
+                    {% component 'Product' %}
+                </div>
+            </div>
         </div>
-    </div>
+        <!-- /.container -->
+    </section>
+
+</div>
+<div class="product-clear-fix"></div>
+<div class="container">
 
     <div class="row my-5">
         <div class="col">
@@ -24,4 +51,36 @@ localeUrl[es] = "/product"
         </div>
     </div>
 
+</div>
+<div>
+    <div class="category-clear-fix"></div>
+    <section class="content-section-marketing triangle triangle-gray">
+
+        <div class="container">
+            {% partial 'marketing' %}
+
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="contact">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 my-auto">
+
+                </div>
+                <div class="col-lg-6 my-auto">
+                    <h3 class="h3-responsive text-primary">{{ 'Contact us'|_ }}</h3>
+                    <p class="grey-text text-darken-2">
+                        {{ 'We would be please to give you free quote and come install your product to keep you in safety.'|_ }}
+                    </p>
+
+                    {% component 'esecurityContact' %}
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </section>
 </div>

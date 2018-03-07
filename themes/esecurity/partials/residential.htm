@@ -10,8 +10,9 @@ description = "Residential"
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3 pr-md-0 group-item">
-                <div class="card rounded-0 z-depth-2">
+            {# Card 1 #}
+            <div class="col-12 col-sm-6 col-md-3 px-md-0 group-item">
+                <div class="card rounded-0 z-depth-2 main-card">
                     <div class="card-body text-center">
                         <a class="d-block text-dark"
                            href="{{ 'residential'|page({category: 'smart-home'}) }}">
@@ -21,12 +22,25 @@ description = "Residential"
                         </a>
                     </div>
                 </div>
+                <div class="card rounded-0 card-hovered">
+                    <div class="card-body text-center text-white pt-5">
+                        <h5 class="h5-responsive text-uppercase mt-5">{{ 'Smart home'|_ }}</h5>
+                        <p class="mt-4">Description Smart home</p>
+                    </div>
+                    <div class="card-footer text-center bg-success">
+                        <a class="text-white"
+                           href="{{ 'residential'|page({category: 'smart-home'}) }}">
+                            {{ 'Learn more'|_ }}
+                        </a>
+                    </div>
+                </div>
             </div>
+            {# Card 2 #}
             <div class="col-12 col-sm-6 col-md-3 px-md-0 group-item">
-                <div class="card rounded-0 z-depth-2">
+                <div class="card rounded-0 z-depth-2 main-card">
                     <div class="card-body text-center">
                         <a class="d-block text-dark"
-                           href="{{ 'residential'|page({category: 'home-security-alarm'}) }}">
+                           href="{{ 'residential'|page({category: 'camera-video'}) }}">
                             <img src="{{ 'assets/images/products/alarm.jpg'|theme }}"
                                  class="img-fluid">
                             <h5 class="h5-responsive text-uppercase">
@@ -34,21 +48,47 @@ description = "Residential"
                         </a>
                     </div>
                 </div>
+                <div class="card rounded-0 card-hovered">
+                    <div class="card-body text-center text-white pt-5">
+                        <h5 class="h5-responsive text-uppercase mt-5">{{ 'Home security camera'|_ }}</h5>
+                        <p class="mt-4">Description Home security camera</p>
+                    </div>
+                    <div class="card-footer text-center bg-success">
+                        <a class="text-white"
+                           href="{{ 'residential'|page({category: 'camera-video'}) }}">
+                            {{ 'Learn more'|_ }}
+                        </a>
+                    </div>
+                </div>
             </div>
+            {# Card 3 #}
             <div class="col-12 col-sm-6 col-md-3 px-md-0 group-item">
-                <div class="card rounded-0 z-depth-2">
+                <div class="card rounded-0 z-depth-2 main-card">
                     <div class="card-body text-center">
                         <a class="d-block text-dark"
-                           href="{{ 'residential'|page({category: 'camera-video'}) }}">
+                           href="{{ 'residential'|page({category: 'home-security-alarm'}) }}">
                             <img src="{{ 'assets/images/products/alarm.jpg'|theme }}"
                                  class="img-fluid">
                             <h5 class="h5-responsive text-uppercase">{{ 'Home security alarm'|_ }}</h5>
                         </a>
                     </div>
                 </div>
+                <div class="card rounded-0 card-hovered">
+                    <div class="card-body text-center text-white pt-5">
+                        <h5 class="h5-responsive text-uppercase mt-5">{{ 'Home security alarm'|_ }}</h5>
+                        <p class="mt-4">Description Home security alarm</p>
+                    </div>
+                    <div class="card-footer text-center bg-success">
+                        <a class="text-white"
+                           href="{{ 'residential'|page({category: 'home-security-alarm'}) }}">
+                            {{ 'Learn more'|_ }}
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-3 pl-md-0 group-item">
-                <div class="card rounded-0 z-depth-2">
+            {# Card 4 #}
+            <div class="col-12 col-sm-6 col-md-3 px-md-0 group-item">
+                <div class="card rounded-0 z-depth-2 main-card">
                     <div class="card-body text-center">
                         <a class="d-block text-dark"
                            href="{{ 'residential'|page({category: 'critical-systems'}) }}">
@@ -56,6 +96,18 @@ description = "Residential"
                                  class="img-fluid">
                             <h5 class="h5-responsive text-uppercase">
                                 {{ 'Critical home systems'|_ }}</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded-0 card-hovered">
+                    <div class="card-body text-center text-white pt-5">
+                        <h5 class="h5-responsive text-uppercase mt-5">{{ 'Critical home systems'|_ }}</h5>
+                        <p class="mt-4">Description Critical home systems</p>
+                    </div>
+                    <div class="card-footer text-center bg-success">
+                        <a class="text-white"
+                           href="{{ 'residential'|page({category: 'critical-systems'}) }}">
+                            {{ 'Learn more'|_ }}
                         </a>
                     </div>
                 </div>

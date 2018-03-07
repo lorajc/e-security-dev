@@ -8,3 +8,6 @@ columns:
         searchable: true
     group_name:
         label: Group
+        sortable: false
+    slug:
+        label: slug

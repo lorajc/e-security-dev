@@ -133,6 +133,19 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label' => 'E-security settings',
+                'description' => 'Manage site settings',
+                'icon' => 'icon-cog',
+                'class' => 'Esecurity\Projects\Models\Settings',
+                'order' => 500,
+            ]
+        ];
+    }
+
     public function registerMarkupTags()
     {
         return [

@@ -52,7 +52,7 @@ class Basket extends ComponentBase
         }
     }
 
-    public function onRemovePhoto()
+    public function onRemoveProduct()
     {
         Cart::remove(post('row_id'));
 

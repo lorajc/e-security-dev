@@ -1,0 +1,44 @@
+title = "Profile"
+url = "/account/profile"
+layout = "default"
+is_hidden = 0
+
+[UserUpdate]
+placeholderText = "Click or drag images to upload"
+maxSize = 5
+fileTypes = ".gif,.jpg,.jpeg,.png"
+previewWidth = 175
+previewHeight = 175
+previewMode = "auto"
+previewFluid = 1
+deferredBinding = 1
+
+[session]
+security = "user"
+redirect = "account/connection"
+==
+<?php
+use Rainlab\User\Models\User;
+function onInit()
+{
+    $user = Auth::getUser();
+    if ($user) {
+        $this->UserUpdate->bindModel('avatar', User::where('id',$user->id)->first());
+    }
+}
+?>
+==
+<div class="container">
+    <div class="row my-5">
+        <div class="col">
+            <h1 class="h1-responsive text-primary">{{ 'My account'|_ }} </h1>
+            <div class="row mt-4">
+                <div class="col">
+                    {% component 'UserUpdate' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% component 'session' %}

@@ -1,0 +1,17 @@
+title = "Connection"
+url = "/account/connection"
+layout = "default"
+is_hidden = 0
+
+[UserLogin]
+redirect = "/"
+paramCode = "code"
+==
+
+<div class="container login-page" style="height: 600px;">
+    <div class="row">
+        <div class="col">
+            {% component 'UserLogin' %}
+        </div>
+    </div>
+</div>

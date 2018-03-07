@@ -1,8 +1,36 @@
 .category-page {
-  .group-item .card-body {
-    min-height: 260px;
-    @include media-breakpoint-down(md) {
-      min-height: 210px;
+  .group-item {
+    .card {
+      position: relative;
+    }
+    .card-body {
+      min-height: 260px;
+      @include media-breakpoint-down(md) {
+        min-height: 210px;
+      }
+    }
+    &:hover {
+      .card-hovered {
+        display: block;
+      }
+      .card-body {
+        h5, h3, p {
+          color: #ffffff!important;
+        }
+      }
+    }
+    .card-hovered {
+      position: absolute;
+      width: 100%;
+      height: 541px;
+      top: 0;
+      display: none;
+      background-color: rgba(0, 95, 134, 0.6);
+      color: #ffffff;
+      .card-body {
+        margin-top: 280px;
+      }
+
     }
   }
 }

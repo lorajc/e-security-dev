@@ -1,0 +1,50 @@
+{% if orders|length > 0 %}
+    <div class="row mt-5">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-hover table-sm" style="display: table">
+                    <thead>
+                    <tr>
+                        <th>{{ 'Order'|_ }}</th>
+                        <th>{{ 'Date'|_ }}</th>
+                        <th class="text-right">#{{ 'Items'|_ }}</th>
+                        <th class="text-right" style="min-width: 120px;">{{ 'Subtotal'|_ }}</th>
+                        <th class="text-right" style="min-width: 90px;">{{ 'GST'|_ }}</th>
+                        <th class="text-right" style="min-width: 90px;">{{ 'QST'|_ }}</th>
+                        <th class="text-right" style="min-width: 120px;">{{ 'Total'|_ }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                <a href="{{ 'order-confirmation'|page({token: order.token}) }}" target="_blank">
+                                    {{ order.id }}
+                                </a>
+                            </td>
+                            <td>{{ order.completion_date }}</td>
+                            <td class="text-right">{{ order.items_total }}</td>
+                            <td class="text-right">{{ order.subtotal|money }}</td>
+                            <td class="text-right">{{ order.tax1_total|money }}</td>
+                            <td class="text-right">{{ order.tax2_total|money }}</td>
+                            <td class="text-right">{{ order.grand_total|money }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col text-right">
+            {% partial 'pagination' items=orders %}
+        </div>
+    </div>
+{% else %}
+    <div class="row my-5">
+        <div class="col text-center">
+            <h3 class="h3-responsive">{{ 'You currently have no orders to display'|_ }}</h3>
+        </div>
+    </div>
+{% endif %}

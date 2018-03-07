@@ -5000,8 +5000,14 @@ body, h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   .content-section-business .container { overflow-y: visible; } }
 @media (max-width: 991.98px) { .content-section-business { padding-bottom: 50px; } }
 
-.home-page .group-item .card-body { min-height: 310px; }
-@media (max-width: 991.98px) { .home-page .group-item .card-body { min-height: 220px; } }
+.home-page .group-item { position: relative; }
+.home-page .group-item:hover .card-hovered { display: block; }
+.home-page .group-item:hover .main-card h5 { display: none; }
+.home-page .group-item .main-card .card-body { min-height: 310px; }
+@media (max-width: 991.98px) { .home-page .group-item .main-card .card-body { min-height: 220px; } }
+.home-page .group-item .card-hovered { background-color: transparent; display: none; position: absolute; top: 0; width: 100%; }
+.home-page .group-item .card-hovered .card-body { background-color: rgba(0, 95, 134, 0.6); min-height: 261px; }
+@media (max-width: 991.98px) { .home-page .group-item .card-hovered .card-body { min-height: 220px; } }
 
 .content-section-marketing { padding: 50px 0; background-color: #ced4da; }
 
@@ -5025,8 +5031,15 @@ footer { padding: 20px 0; background-color: #f8f8f8; }
 
 p.copyright { margin: 15px 0 0; }
 
+.category-page .group-item .card { position: relative; }
 .category-page .group-item .card-body { min-height: 260px; }
 @media (max-width: 991.98px) { .category-page .group-item .card-body { min-height: 210px; } }
+.category-page .group-item:hover .card-hovered { display: block; }
+.category-page .group-item:hover .card-body h5, .category-page .group-item:hover .card-body h3, .category-page .group-item:hover .card-body p { color: #ffffff !important; }
+.category-page .group-item .card-hovered { position: absolute; width: 100%; height: 541px; top: 0; display: none; background-color: rgba(0, 95, 134, 0.6); color: #ffffff; }
+.category-page .group-item .card-hovered .card-body { margin-top: 280px; }
+
+.product-page .product-details h2, .product-page .product-details h3, .product-page .product-details h4, .product-page .product-details h5 { color: #84BD00; }
 
 /* General CSS tricks
 */

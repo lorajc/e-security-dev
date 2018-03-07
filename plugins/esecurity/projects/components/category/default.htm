@@ -9,23 +9,33 @@
                         <img class="card-img-top pt-2 mx-auto d-block" src="{{ product.images.0.path }}"
                              alt="{{ this.page.title }}" title="{{ product.name|ucfirst }}">
                     </a>
-
                     <div class="card-body text-center">
-                        <a class="d-block text-dark"
-                           href="{{ 'product'|page({category: product.category.slug, product: product.slug}) }}">
-                            <h5 class="h5-responsive text-uppercase">{{ product.name|truncate(35) }}</h5>
-                            <h3 class="h3-responsive text-primary">
-                                {{ product.price|number_format(2, '.', ',') }}
-                            </h3>
-                            <p class="grey-text mb-0">
-                                {{ product.summary|truncate(120) }}
-                            </p>
-                        </a>
+                        <h5 class="h5-responsive text-uppercase">{{ product.name|truncate(35) }}</h5>
+                        <h3 class="h3-responsive text-primary">
+                            {{ product.price|money }}
+                        </h3>
+                        <p class="grey-text mb-0">
+                            {{ product.summary|truncate(120) }}
+                        </p>
                     </div>
                     <div class="card-footer bg-success text-center">
                         <a class="underline text-uppercase text-white"
                            href="{{ 'product'|page({category: product.category.slug, product: product.slug}) }}">
                             {{ 'Learn more'|_ }}
+                        </a>
+                    </div>
+                    <div class="card-hovered">
+                        <a class="d-block text-dark"
+                           href="{{ 'product'|page({category: product.category.slug, product: product.slug}) }}">
+                            <div class="card-body text-center">
+                                <h5 class="h5-responsive text-uppercase text-white">{{ product.name|truncate(35) }}</h5>
+                                <h3 class="h3-responsive text-white">
+                                    {{ product.price|money }}
+                                </h3>
+                                <p class="text-white mb-0">
+                                    {{ product.summary|truncate(120) }}
+                                </p>
+                            </div>
                         </a>
                     </div>
                 </div>

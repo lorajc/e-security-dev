@@ -117,6 +117,16 @@ class ComposerStaticInitfc0942f3751def72d563107eca29fa62
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'a' => 
+        array (
+            'angelleye\\PayPal' => 
+            array (
+                0 => __DIR__ . '/..' . '/angelleye/paypal-php-library/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
@@ -132,6 +142,7 @@ class ComposerStaticInitfc0942f3751def72d563107eca29fa62
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitfc0942f3751def72d563107eca29fa62::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitfc0942f3751def72d563107eca29fa62::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitfc0942f3751def72d563107eca29fa62::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitfc0942f3751def72d563107eca29fa62::$classMap;
 
         }, null, ClassLoader::class);

@@ -4,6 +4,7 @@ use Cms\Classes\ComponentBase;
 Use Esecurity\Projects\Models\Category as BaseCategory;
 Use Esecurity\Projects\Models\Product as BaseProduct;
 Use Esecurity\Projects\Models\Order;
+use Cart;
 
 class Product extends ComponentBase
 {
@@ -28,10 +29,12 @@ class Product extends ComponentBase
         $this->addCss('assets/css/product.css');
         $this->addCss('assets/vendor/lightGallery/css/lightgallery.css');
         $this->addJs('assets/vendor/lightGallery/js/lightgallery.min.js');
-        $this->addJs('assets/js/product.js', '1.01');
+        $this->addJs('assets/js/product.js', '1.02');
         if ($slugProduct = $this->param('product')) {
             $this->page['product'] = $product = BaseProduct::where('slug', $slugProduct)
                 ->first();
+            $this->checkProductInCart($product);
+
             if ($slug = $this->param('category')) {
                 $this->page['category'] = $category = BaseCategory::where('slug', $slug)
                     ->where('group', $product->group)->first();
@@ -45,6 +48,16 @@ class Product extends ComponentBase
 
     }
 
+    private function checkProductInCart($product)
+    {
+        $cart = Cart::content();
+        $item = $cart->search(function ($cartItem, $rowId) use ($product) {
+            return $cartItem->id == $product->id;
+        });
+        if ($item) {
+            $this->page['inCart'] = $item;
+        }
+    }
     public function setGroup($group)
     {
         return $this->group = $group;

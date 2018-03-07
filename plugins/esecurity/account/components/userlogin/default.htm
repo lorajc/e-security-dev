@@ -1,0 +1,17 @@
+{% if not user %}
+    <div class="row my-5">
+        <div class="col-md-8 offset-md-2 mt-3">
+            <br><br>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h2-responsive">{{ 'Login'|_ }}</h2>
+                    {% partial __SELF__ ~ '::signin' %}
+                </div>
+                <div class="card-footer text-muted text-center">
+                    {{ "Don't have an account yet?"|_ }}&nbsp;
+                    <a href="{{ 'account/register'|page }}">{{ 'Sign up'|_ }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

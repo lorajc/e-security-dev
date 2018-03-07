@@ -1,0 +1,40 @@
+<div class="container">
+    <br>
+    {{ form_open({"id":"form-register-user", 'files':'true' }) }}
+    <div class="row my-5">
+        <div class="col-md-8 offset-md-2 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h2-responsive">{{ 'Create your account'|_ }}</h2>
+                    {% partial __SELF__ ~ '::_register' %}
+                    <div class="row mt-3">
+                        <div class="col">
+                            <small>
+                                <i class="fa fa-info-circle"></i>&nbsp;
+                                {{ 'By clicking Submit, you agree to our'|_ }}&nbsp;
+                                <a></a>
+                                <a href="{{ 'http://e-security.ca/privacy-policy'|_ }}"
+                                   target="_blank">{{ 'Privacy Policy'|_ }}</a>
+                                &nbsp;and&nbsp;
+                                <a href="{{ 'http://e-security.ca/terms-use'|_ }}"
+                                   target="_blank">{{ 'Terms of Use'|_ }}</a>
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer text-muted text-center">
+                    {{ "Already have an account?"|_ }}&nbsp;
+                    <a href="{{ 'account/connection'|page }}">{{ 'Log in'|_ }}</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{ form_close() }}
+    <br><br>
+</div>
+
+
+

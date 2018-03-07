@@ -1,0 +1,47 @@
+subject = "Welcome to E-security"
+layout = "custom"
+==
+
+
+==
+
+<html>
+<body>
+<table width="640" cellspacing="0" cellpadding="0" border="0" align="center"
+       style="font-family: Helvetica, sans-serif;">
+    <tr>
+        <td style="background-color: #f5f5f5;padding: 20px 35px;border-top: 4px solid #111820;">
+            <img src="{{ logo }}" width="200">
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 20px 35px;font-family: Helvetica, sans-serif;">
+            <br/>
+            <strong>Hello {{ name }}</strong>,<br/><br/>
+            Thank you for your interest in PAXStockPhoto. Your account will be confirmed shortly. You will receive an e-mail once activated.
+            <br/>
+            <br/>
+            Your user: <strong>{{ email }}</strong>
+            <br/>
+            Your password: <strong>{{ password }}</strong>
+            <br/><br/><br/><br/>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #40464c;padding: 20px;font-family: Helvetica, sans-serif;font-size: 12px;color: #ffffff;">
+            {{ 'For any questions, do not hesitate to'|_ }}
+            <a href="{{ server }}contact" style="color: #ffffff;text-decoration: underline;">contact us</a><br><br>
+            {{ 'All transactions on PAXStockPhoto are safe and secure'|_ }}.
+            {{ 'Any personal information you give us will be handled in the strictest confidence according to our'|_ }}
+            <a href="{{ 'https://e-security.ca/privacy-policy' }}" style="color: #ffffff;text-decoration: underline;">
+                {{ 'privacy policy'|_ }}
+            </a>.
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #111820;padding: 10px 20px;font-family: Helvetica, sans-serif;font-size: 10px;color: #ffffff;text-align: right;">
+            All rights reserved &copy; E-security {{ "now"|date('Y') }}
+        </td>
+    </tr>
+</table>
