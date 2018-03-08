@@ -4,27 +4,27 @@ description = "Footer"
 <div class="container text-white">
     <ul class="list-inline small">
         <li class="list-inline-item">
-            <a href="#" class="text-white underline">{{ 'Residential'|_ }}</a>
+            <a href="#residential" class="text-white underline">{{ 'Residential'|_ }}</a>
         </li>
         <li class="footer-menu-divider list-inline-item">&sdot;</li>
         <li class="list-inline-item">
-            <a href="#about" class="text-white underline">{{ 'Business'|_ }}</a>
+            <a href="#business" class="text-white underline">{{ 'Business'|_ }}</a>
         </li>
         <li class="footer-menu-divider list-inline-item">&sdot;</li>
         <li class="list-inline-item">
-            <a href="#services" class="text-white underline">{{ 'Contact'|_ }}</a>
+            <a href="#contact" class="text-white underline">{{ 'Contact'|_ }}</a>
         </li>
         <li class="footer-menu-divider list-inline-item">&sdot;</li>
         <li class="list-inline-item">
             {% if lang == 'en' %}
-                <a href="#"
+                <a href="javascript:void(0);"
                    class="text-white underline"
                    data-request="onSwitchLocale"
                    data-request-data="locale: 'fr'" title="Français">
                     Français
                 </a>
             {% else %}
-                <a href="#"
+                <a href="javascript:void(0);"
                    class="text-white underline"
                    data-request="onSwitchLocale"
                    data-request-data="locale: 'en'" title="English">

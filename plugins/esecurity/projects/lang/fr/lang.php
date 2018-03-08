@@ -6,7 +6,7 @@ return [
         'success' => 'Nous vous remercions de votre commande',
     ],
     'basket' => [
-        'add' => "La photo a été ajoutée au panier d'achat",
+        'add' => "Le produit a été ajoutée au panier d'achat",
     ],
 
 ];

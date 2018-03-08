@@ -1,10 +1,16 @@
 <?php namespace Esecurity\Projects\Components;
 
 use Cms\Classes\ComponentBase;
+use Cart;
 use Auth;
 use ApplicationException;
 use RainLab\Translate\Classes\Translator as languageTranslator;
 use Esecurity\Projects\Classes\PaypalPayments;
+use Esecurity\Projects\Models\Product;
+use Esecurity\Projects\Models\Settings;
+use Esecurity\Projects\Models\Country;
+use Esecurity\Projects\Models\Province;
+use Esecurity\Projects\Models\Order;
 
 class Checkout extends ComponentBase
 {
@@ -36,7 +42,7 @@ class Checkout extends ComponentBase
 
     public function onRun()
     {
-
+        $this->loadBasketInfo();
     }
 
     public function loadBasketInfo()
@@ -51,10 +57,13 @@ class Checkout extends ComponentBase
         });
         $this->page['basketItems'] = $content;
         $this->page['count'] = Cart::count();
+        $this->page['countries'] = Country::orderBy('show_order')->get();
         $this->getOrderSummary();
+    }
 
-        $this->page['months'] = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-        $this->page['years'] = $this->setYears();
+    public function getProductData($id)
+    {
+        return Product::whereId($id)->first();
     }
 
 
@@ -69,14 +78,11 @@ class Checkout extends ComponentBase
 
     private function getOrderSummary()
     {
-        $discountRate = Settings::get('discount_rate');
-        $minPhotos = Settings::get('photos_discount');
         $count = Cart::count();
         $subtotal = Cart::subtotal();
-        $discount = $count >= $minPhotos ? ($subtotal * $discountRate) / 100 : 0;
+        $discount = 0;
         $gst = ($subtotal - $discount) * 0.05;
         $qst = ($subtotal - $discount) * 0.09975;
-        $this->page['discountRate'] = $count >= $minPhotos ? $discountRate : 0;
         $this->page['discount'] = $discount;
         $this->page['subtotal'] = $subtotal;
         $this->page['gst'] = $gst;
@@ -84,7 +90,7 @@ class Checkout extends ComponentBase
         $this->page['total'] = ($subtotal - $discount) + $gst + $qst;
     }
 
-    public function onRemovePhoto()
+    public function onRemoveProduct()
     {
         Cart::remove(post('row_id'));
         return \Redirect::to($this->pageUrl('checkout'));
@@ -197,11 +203,10 @@ class Checkout extends ComponentBase
             $data['password'] = str_random(8);
             $data['password_confirmation'] = $data['password'];
         }
-        $city = City::where('idVille', $data['city_id'])->first();
         $country = Country::select('shortcut')->where('idPays', $data['country_id'])->first();
         $state = Province::select('code_province')->where('idProvince', $data['state_id'])->first();
         $data['language'] = $this->lang;
-        $data['city'] = $this->lang == 'en' ? $city->nom_en : $city->nom_fr;
+        $data['city'] = '';
         $data['country'] = $country->shortcut;
         $data['state'] = $state->code_province;
         $data['logo'] = $this->server . '/themes/logimonde/assets/images/PAX-StockPhoto.png';

@@ -29,29 +29,46 @@
                        name="street_addr" value="{{ user.street_addr }}">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label>{{ 'Phone'|_ }}</label>
-                <input type="text" class="form-control"
-                       name="phone" value="{{ user.phone }}">
-            </div>
-        </div>
 
         <div class="form-row">
-            <div class="col-md-9 form-group">
-                <label>{{ 'City (Type city name & choose from list)'|_ }}</label>
-                <input type="text" class="form-control get-city"
-                       name="name_city"
-                       value="{{ user.city ? user.city.nom_en ~ ' (' ~ user.state.nom_en ~ ' - ' ~ user.country.nom_en ~ ')' : '' }}">
+            <div class="col col-sm form-group">
+                <label>{{ 'Country'|_ }}</label>
+                <select class="form-control"
+                        name="country_id" required>
+                    <option value="">{{ 'Select a country'|_ }}</option>
+                    {% for country in countries %}
+                            <option value="{{ country.id }}">
+                                {{ country.name_en }}</option>
 
-                <input type="hidden" name="city_id" value="{{ user.city_id }}">
-                <input type="hidden" name="state_id" value="{{ user.state_id }}">
-                <input type="hidden" name="country_id" value="{{ user.country_id }}">
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col col-sm form-group">
+                <label>{{ 'State'|_ }}</label>
+                <select class="form-control" id="select-state"
+                        name="state_id" required>
+                    <option value="">{{ 'Select a province'|_ }}</option>
+                    {% partial __SELF__ ~ '::_states' %}
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-9 form-group">
+                <label>{{ 'City'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="city" value="">
             </div>
             <div class="col-md-3 form-group">
                 <label>{{ 'Postal code'|_ }}</label>
                 <input type="text" class="form-control"
                        name="zip" value="{{ user.zip }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label>{{ 'Phone'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="phone" value="{{ user.phone }}">
             </div>
         </div>
     </div>

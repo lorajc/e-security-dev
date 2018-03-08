@@ -1,8 +1,7 @@
-
 <div class="row ">
     <div class="col-12 col-sm bg-white pt-4">
         <img src="{{ product.images.0.path }}" class="img-fluid">
-        {% partial __SELF__ ~'::_gallery'  %}
+        {% partial __SELF__ ~'::_gallery' %}
     </div>
     <div class="col-12 col-sm bg-white product-details">
         <h3 class="h3-responsive mt-5">
@@ -10,13 +9,19 @@
         </h3>
         <hr>
         <p class="mt-3">{{ product.summary }}</p>
-        <div>{{ product.description|raw }}</div>
-        <p class="text-right">
-            <button class="btn btn-success btn-lg pointer"
+        <div class="product-description">{{ product.description|raw }}</div>
+        <p class="text-right mt-5">
+            <a href="{{ product.group_slug|page({category: product.category.slug}) }}"
+               class="btn btn-primary mr-3">
+                <i class="fa fa-history"></i>&nbsp;
+                {{ 'Back to list'|_ }}
+            </a>
+            <button class="btn btn-success btn-lg pointer text-white"
                     type="button"
                     data-product-id="{{ product.id }}"
                     {% if inCart %}disabled{% endif %}
                     id="btn-add-cart">
+                <i class="fa fa-shopping-cart"></i>&nbsp;
                 {{ 'Add to cart'|_ }}
             </button>
 
@@ -25,6 +30,6 @@
 </div>
 <div class="mt-4 collapse" id="collapse-order">
     <div class="col">
-        {% partial __SELF__ ~'::_order'  %}
+        {% partial __SELF__ ~'::_order' %}
     </div>
 </div>

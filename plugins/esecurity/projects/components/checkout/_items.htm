@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-hover table-sm " style="display: table;">
+    <table class="table table-hover " style="display: table;">
         <thead class=" mx-auto">
         <tr class="table-secondary">
             <th style="min-width: 50px;">&nbsp;</th>
@@ -11,24 +11,25 @@
         <tbody>
         {% for item in basketItems %}
             {#{{ item|var_dump }}#}
+            {% set product = __SELF__.getProductData(item.id) %}
             <tr class="row-{{ item.rowid }}">
                 <td>
                     <button type="button" class="btn btn-secondary btn-sm"
-                            data-request="{{ __SELF__ }}::onRemovePhoto"
+                            data-request="{{ __SELF__ }}::onRemoveProduct"
                             data-request-data="row_id: '{{ item.rowId }}'"
                             data-request-update="'{{ __SELF__ }}::default': '.shop-cart'">
                         <i class="fa fa-remove"></i>
                     </button>
                 </td>
                 <td>
-                    <a href="{{ 'photo'|page({id: item.id, slug: item.slug}) }}"
+                    <a href="{{ product.group_slug|page({category: product.category.slug}) }}"
                        target="_blank">
-                        {{ item.id }}
+                        {{ product.category.name }}
                     </a>
                     <input type="hidden" name="photos[]" value="{{ item.id }}">
                 </td>
                 <td>
-                    <a href="{{ 'photo'|page({id: item.id, slug: item.slug}) }}"
+                    <a href="{{ 'product'|page({category: product.category.slug, slug: item.slug}) }}"
                        target="_blank">
                         {{ item.name }}
                     </a>

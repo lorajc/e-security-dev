@@ -57,4 +57,13 @@ class Product extends Model
             return "Business";
         }
     }
+
+    public function getGroupSlugAttribute()
+    {
+        if ($this->group == '1') {
+            return "residential";
+        } else {
+            return "business";
+        }
+    }
 }

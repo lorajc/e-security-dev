@@ -6,7 +6,7 @@ return [
         'success' => 'Thank you for your order',
     ],
     'basket' => [
-        'add' => 'The photo has been added to shopping cart',
+        'add' => 'The product has been added to shopping cart',
     ],
 
 
