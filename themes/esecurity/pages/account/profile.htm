@@ -17,17 +17,7 @@ deferredBinding = 1
 security = "user"
 redirect = "account/connection"
 ==
-<?php
-use Rainlab\User\Models\User;
-function onInit()
-{
-    $user = Auth::getUser();
-    if ($user) {
-        $this->UserUpdate->bindModel('avatar', User::where('id',$user->id)->first());
-    }
-}
-?>
-==
+
 <div class="container">
     <div class="row my-5">
         <div class="col">
