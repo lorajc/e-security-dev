@@ -11,6 +11,7 @@ use Esecurity\Projects\Models\Settings;
 use Esecurity\Projects\Models\Country;
 use Esecurity\Projects\Models\Province;
 use Esecurity\Projects\Models\Order;
+use Esecurity\Projects\Models\OrderItem;
 
 class Checkout extends ComponentBase
 {
@@ -37,19 +38,20 @@ class Checkout extends ComponentBase
         $translator = languageTranslator::instance();
         $this->lang = $translator->getLocale();
 
-        $this->server = env('APP_ENV') == 'dev' ? 'http://10.1.1.24/dev/media_stock' : 'http://www.paxstockphoto.com';
+        $this->server = env('APP_ENV') == 'dev' ? 'http://10.1.1.24/wbc/esecurity' : 'http://www.e-security.ca';
     }
 
     public function onRun()
     {
+        $this->addJs('assets/js/checkout.js', '1.01');
         $this->loadBasketInfo();
+        if (post('btn_checkout') == 'checkout_OK') {
+            $this->saveCheckout();
+        }
     }
 
     public function loadBasketInfo()
     {
-
-        $this->addJs('assets/js/ccv.js');
-        $this->addJs('assets/js/checkout.js');
         $content = Cart::content();
 
         $content->each(function ($row) {
@@ -64,6 +66,11 @@ class Checkout extends ComponentBase
     public function getProductData($id)
     {
         return Product::whereId($id)->first();
+    }
+
+    public function onGetStates()
+    {
+        $this->page['states'] = Province::where('country_id', post('id'))->get();
     }
 
 
@@ -100,10 +107,6 @@ class Checkout extends ComponentBase
     public function saveCheckout()
     {
         $data = post();
-        if (!isset($data['city_id']) or $data['city_id'] == '') {
-            \Flash::error(\Lang::get('logimonde.stock::lang.checkout.error1'));
-            return \Redirect::to($this->pageUrl('checkout'));
-        }
         if ($data['grand_total'] > 0) {
             $moreData = $this->getDataPayment($data);
             $data = array_merge($data, $moreData);
@@ -140,10 +143,9 @@ class Checkout extends ComponentBase
         $order->email = $data['email'];
         $order->card_holder_name = $data['first_name'] . ' ' . $data['last_name'];
         $order->billing_address = $data['street_addr'];
-        $order->company = $data['company'];
         $order->phone = $data['phone'];
         $order->zip = $data['zip'];
-        $order->city_id = $data['city_id'];
+        $order->city = $data['city'];
         $order->state_id = $data['state_id'];
         $order->country_id = $data['country_id'];
         $order->discount = $data['discount'];
@@ -158,20 +160,20 @@ class Checkout extends ComponentBase
         }
         $order->save();
 
-        $this->insertOrderItems($data, $order);
+        $this->insertOrderItems($data['products'], $order);
 
         return $order;
     }
 
-    private function insertOrderItems($data, $order)
+    private function insertOrderItems($products, $order)
     {
-        $photos = $data['photos'];
-        if (is_array($photos)) {
-            foreach ($photos as $photo) {
+        if (is_array($products)) {
+            foreach ($products as $product) {
+                $dataProduct = Product::whereId($product)->first();
                 $item = new OrderItem;
-                $item->photo_id = $photo;
+                $item->product_id = $product;
                 $item->order_id = $order->id;
-                $item->price = Settings::get('price');
+                $item->price = $dataProduct->price;
                 $item->quantity = '1';
                 $item->save();
             }
@@ -203,13 +205,12 @@ class Checkout extends ComponentBase
             $data['password'] = str_random(8);
             $data['password_confirmation'] = $data['password'];
         }
-        $country = Country::select('shortcut')->where('idPays', $data['country_id'])->first();
-        $state = Province::select('code_province')->where('idProvince', $data['state_id'])->first();
+        $country = Country::select('shortcut')->where('id', $data['country_id'])->first();
+        $state = Province::select('code_province')->where('id', $data['state_id'])->first();
         $data['language'] = $this->lang;
-        $data['city'] = '';
         $data['country'] = $country->shortcut;
         $data['state'] = $state->code_province;
-        $data['logo'] = $this->server . '/themes/logimonde/assets/images/PAX-StockPhoto.png';
+        $data['logo'] = 'http://e-security.ca/themes/esecurity/assets/images/e-security.png';
         $data['server'] = $this->server;
         $data['urlPhoto'] = $this->server . '/photo/';
         $data['urlOrder'] = $this->server . '/order/confirmation/';
@@ -218,7 +219,7 @@ class Checkout extends ComponentBase
         $data['cmd'] = "_xclick";
         $data['ls'] = $country->shortcut;;
         $data['rm'] = "2";
-        $data['item_name'] = "PAXStockPhoto.com";
+        $data['item_name'] = "e-security.ca";
         $data['address1'] = $data['street_addr'];
         return $data;
     }

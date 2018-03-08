@@ -3,14 +3,14 @@
 use Model;
 
 /**
- * Order Model
+ * OrderItem Model
  */
-class Order extends Model
+class OrderItem extends Model
 {
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'esecurity_projects_orders';
+    public $table = 'esecurity_projects_order_items';
 
     /**
      * @var array Guarded fields
@@ -26,12 +26,10 @@ class Order extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [
-        'items' => 'Esecurity\Projects\Models\OrderItem',
-    ];
+    public $hasMany = [];
     public $belongsTo = [
-        'country' => ['Esecurity\Projects\Models\Country'],
-        'state' => ['Esecurity\Projects\Models\Province'],
+        'order' => 'Esecurity\Projects\Models\Order',
+        'product' => 'Esecurity\Projects\Models\Product',
     ];
     public $belongsToMany = [];
     public $morphTo = [];

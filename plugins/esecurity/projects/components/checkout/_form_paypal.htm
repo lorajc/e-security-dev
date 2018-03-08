@@ -10,7 +10,7 @@
 {{ form_open({"id":"form-payment-paypal", 'url': post_url, "target": "_top" }) }}
 {#{{ var_dump(params) }}#}
 {% for key, param in params %}
-    {% if key != 'photos' %}
+    {% if key != 'products' %}
         <input type="hidden" name="{{ key }}" value="{{ param }}">
     {% endif %}
 {% endfor %}

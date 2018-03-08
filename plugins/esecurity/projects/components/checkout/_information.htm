@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header">
+    <div class="card-header bg-primary text-white">
         {{ 'Biling Information'|_ }}
     </div>
     <div class="card-body">
@@ -34,11 +34,12 @@
             <div class="col col-sm form-group">
                 <label>{{ 'Country'|_ }}</label>
                 <select class="form-control"
-                        name="country_id" required>
+                        name="country_id" required
+                        onchange="getStates(this)">
                     <option value="">{{ 'Select a country'|_ }}</option>
                     {% for country in countries %}
-                            <option value="{{ country.id }}">
-                                {{ country.name_en }}</option>
+                        <option value="{{ country.id }}">
+                            {{ country.name_en }}</option>
 
                     {% endfor %}
                 </select>
